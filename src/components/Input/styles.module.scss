@@ -1,0 +1,57 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.content {
+  background-color: #8080804a;
+  border: 2px solid transparent;
+  height: 60px;
+  width: 100%;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  padding: 0px 20px;
+}
+
+.label {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.input {
+  background: transparent;
+  height: 60px;
+  width: 100%;
+  border: none;
+  margin-left: 20px;
+  color: #fff;
+  font-size: 1rem;
+  letter-spacing: 1px;
+
+  &:focus {
+    // & faz refêrencia ao painno caso o input
+    outline: none;
+  }
+}
+
+.input[type='password'] {
+  letter-spacing: 5px;
+}
+
+.focus {
+  border: 2px solid #1e9e6f !important;
+
+  svg {
+    color: #1e9e6f;
+  }
+}
+
+.filled {
+  svg {
+    color: #1e9e6f;
+  }
+}

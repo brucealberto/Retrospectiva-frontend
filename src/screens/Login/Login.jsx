@@ -1,4 +1,5 @@
-import styles from './styles.module.scss'
+import { CustomInput } from '../../components/Input/Input';
+import styles from './styles.module.scss';
 export function Login() {
   return (
     <div className={styles.container}>
@@ -7,8 +8,8 @@ export function Login() {
 
       <form className={styles.form} autoComplete='off'>
         <h2>Login</h2>
-        <input type="text" name="" id="" />
+        <CustomInput />
       </form>
     </div>
-  )
+  );
 }
