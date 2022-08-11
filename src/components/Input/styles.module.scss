@@ -55,3 +55,23 @@
     color: #1e9e6f;
   }
 }
+
+.error {
+  display: flex;
+  font-size: 13px;
+  align-items: center;
+  margin-top: 7px;
+  color: #ef3939;
+
+  svg {
+    margin-right: 10px;
+  }
+}
+
+.errorInput {
+  border: 2px solid #ff8a8a !important;
+
+  svg {
+    color: #ff8a8a;
+  }
+}
