@@ -3,19 +3,20 @@ import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { object, string } from 'yup';
-import { FiLock, FiMail, FiSend } from 'react-icons/fi';
+import { FiArrowLeft, FiLock, FiMail, FiSave, FiSend, FiUser } from 'react-icons/fi';
 
 import styles from './styles.module.scss';
 import { CustomInput } from '../../components/Input/Input';
 
 const schema = object({
+  name: string().required('Nome obrigatório'),
   email: string().required('E-mail obrigatório!').email('E-mail inválido.'),
   password: string()
     .required('Senha obrigatória.')
     .min(6, 'No mínimo 6 caracteres.'),
 }).required();
 
-export function Login() {
+export function Register() {
   const [isShowingPassword, setIsShowingPassword] = useState(false);
 
   const {
@@ -44,7 +45,14 @@ export function Login() {
         className={styles.form}
         autoComplete='off'
       >
-        <h2>Login</h2>
+        <h2>Cadastrar</h2>
+
+        <CustomInput
+          label='Nome'
+          Icon={FiUser}
+          {...register('name')}
+          error={errors.name}
+        />
 
         <CustomInput
           label='E-mail'
@@ -64,9 +72,9 @@ export function Login() {
           isShowingPassword={isShowingPassword}
         />
         
-        <button className={styles.button} type='submit'>Enviar <FiSend/></button>
+        <button className={styles.button} type='submit'>Cadastrar <FiSave/> </button>
 
-        <Link className={styles.link} to="/register">criar uma conta</Link>
+        <Link className={styles.link} to="/"><FiArrowLeft/> voltar para login</Link>
       </form>
     </div>
   );

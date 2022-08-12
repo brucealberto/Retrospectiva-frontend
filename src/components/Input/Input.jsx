@@ -28,13 +28,17 @@ const InputBase = (
 
   return (
     <div className={styles.container}>
-      <label className={styles.label}>Email</label>
+
+      <label className={styles.label}>{label}</label>
+
       <div
         className={`${styles.content} ${isFilled && styles.filled} ${
           isFocus && styles.focus
         } ${error && styles.errorInput}`}
       >
+
         {Icon && <Icon size={24} />}
+
         <input
           {...rest}
           ref={ref}
