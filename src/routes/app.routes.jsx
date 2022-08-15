@@ -12,4 +12,3 @@ export function AppRoutes() {
     </Routes>
   );
 }
-' '

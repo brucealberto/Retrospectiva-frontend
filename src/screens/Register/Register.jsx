@@ -1,12 +1,21 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { object, string } from 'yup';
-import { FiArrowLeft, FiLock, FiMail, FiSave, FiSend, FiUser } from 'react-icons/fi';
+import {
+  FiArrowLeft,
+  FiLock,
+  FiMail,
+  FiSave,
+  FiSend,
+  FiUser,
+} from 'react-icons/fi';
 
 import styles from './styles.module.scss';
 import { CustomInput } from '../../components/Input/Input';
+import api from '../../service/api';
+import { toast } from 'react-toastify';
 
 const schema = object({
   name: string().required('Nome obrigatório'),
@@ -17,6 +26,7 @@ const schema = object({
 }).required();
 
 export function Register() {
+  const navigate = useNavigate()
   const [isShowingPassword, setIsShowingPassword] = useState(false);
 
   const {
@@ -31,8 +41,17 @@ export function Register() {
     setIsShowingPassword(!isShowingPassword);
   }
 
-  function onSubmit(data) {
-    console.log(data);
+  async function onSubmit(data) {
+    try {
+      const response = await api.post('/register', data);
+        if(response.status === 201) {
+          toast.success('Usuário cadastrado(a) com sucesso')
+          navigate('/')
+        }
+    } catch (error) {
+      toast.warning(error.response.data.error)
+      console.log(error);
+    }
   }
 
   return (
@@ -71,10 +90,14 @@ export function Register() {
           showPassword={showPassword}
           isShowingPassword={isShowingPassword}
         />
-        
-        <button className={styles.button} type='submit'>Cadastrar <FiSave/> </button>
 
-        <Link className={styles.link} to="/"><FiArrowLeft/> voltar para login</Link>
+        <button className={styles.button} type='submit'>
+          Cadastrar <FiSave />{' '}
+        </button>
+
+        <Link className={styles.link} to='/'>
+          <FiArrowLeft /> voltar para login
+        </Link>
       </form>
     </div>
   );
